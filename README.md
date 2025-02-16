@@ -4,12 +4,12 @@
 
 # gg
 
-Yet another set of Greengrass development commands – but one that feels just right.
+Yet another set of Bash-based Greengrass development commands 
 
 ![video](static/1000x600.gif)
 
 - Simplifies component management and deployment.
-- Supports both local and remote deployment.
+- No virtualenvs, no pip – just Bash.
 - Automatically customizes configurations based on project templates, removing manual edits.
 - Uses YAML for both input and output, keeping configurations simple.
 - Intuitive CLI powered by [Bashly](https://bashly.dannyb.co/).
