@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="static/gg-icon.png" style="border-radius: 12px" alt="gg-icon" width="120">
+</p>
+
 # gg
 
 Yet another set of Greengrass development commands – but one that feels just right.
