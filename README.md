@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="static/gg-icon.png" style="border-radius: 12px" alt="gg-icon" width="120">
+  <img src="static/gg-icon-2.png" style="border-radius: 12px" alt="gg-icon-2" width="120">
 </p>
 
 # gg
