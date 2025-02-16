@@ -2,18 +2,20 @@
   <img src="static/gg-icon-2.png" style="border-radius: 12px" alt="gg-icon-2" width="120">
 </p>
 
-# gg - Yet another Bash-based Greengrass development commands
+# Yet another Bash-based Greengrass development toolkit.
 
-A lightweight Bash alternative to Python-based [Greengrass Development Kit](https://github.com/aws-greengrass/aws-greengrass-gdk-cli).
+`gg` is a lightweight Bash alternative to Python-based [Greengrass Development Kit](https://github.com/aws-greengrass/aws-greengrass-gdk-cli).
 
 ![video](static/1000x600.gif)
 
+# Why `gg`?
+
 - Simplifies component management and deployment.
 - No virtualenvs, no pip – just Bash.
-- Automatically customizes configurations based on project templates, removing manual edits.
-- Uses YAML for both input and output, keeping configurations simple.
-- Intuitive CLI powered by [Bashly](https://bashly.dannyb.co/).
-- Features autocompletion for faster command execution.
+- Automatically customizes configurations from project templates – little to no manual editing.
+- YAML-first approach for both input and output – keeping configurations clean and readable.
+- Built with [Bashly](https://bashly.dannyb.co/) - intuitive CLI structure.
+- Tab-completion support for faster command execution.
 
 # Dependencies
 
