@@ -2,9 +2,9 @@
   <img src="static/gg-icon-2.png" style="border-radius: 12px" alt="gg-icon-2" width="120">
 </p>
 
-# gg
+# gg - Yet another Bash-based Greengrass development commands
 
-Yet another set of Bash-based Greengrass development commands 
+A lightweight Bash alternative to Python-based [Greengrass Development Kit](https://github.com/aws-greengrass/aws-greengrass-gdk-cli).
 
 ![video](static/1000x600.gif)
 
