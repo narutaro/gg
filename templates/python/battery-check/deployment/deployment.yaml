@@ -1,0 +1,8 @@
+components:
+  aws.greengrass.Cli:
+    componentVersion: 2.14.0
+  COMPONENT_NAME:
+    componentVersion: 0.0.2
+    configurationUpdate:
+      merge: '{"BatteryThreshold": 70}'
+targetArn: TARGET_ARN

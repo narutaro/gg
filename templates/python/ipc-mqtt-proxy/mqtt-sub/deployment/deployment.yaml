@@ -1,0 +1,10 @@
+components:
+  aws.greengrass.Cli:
+    componentVersion: 2.14.0
+  aws.greengrass.Nucleus:
+    componentVersion: 2.14.0
+    configurationUpdate:
+      merge: '{"logging":{"level":"DEBUG"}}'
+  COMPONENT_NAME:
+    componentVersion: 0.0.2
+targetArn: TARGET_ARN

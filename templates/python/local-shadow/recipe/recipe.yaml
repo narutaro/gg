@@ -1,0 +1,59 @@
+# AWS IoT Greengrass component recipe reference
+# https://docs.aws.amazon.com/greengrass/v2/developerguide/component-recipe-reference.html
+RecipeFormatVersion: '2020-01-25'
+ComponentName: COMPONENT_NAME
+ComponentVersion: '0.3.1'
+ComponentDescription: COMPONENT_NAME is a python project that interacts with device shadow.
+ComponentPublisher: AUTHOR_NAME
+ComponentConfiguration:
+  DefaultConfiguration:
+    accessControl:
+      aws.greengrass.ShadowManager:
+        'shadow:shadow:1':
+          policyDescription: 'Allows access to shadows'
+          operations:
+            - 'aws.greengrass#GetThingShadow'
+            - 'aws.greengrass#UpdateThingShadow'
+            - 'aws.greengrass#DeleteThingShadow'
+          resources:
+            - $aws/things/MyThingName/shadow
+            - $aws/things/MyThingName/shadow/name/myNamedShadow
+        'shadow:shadow:2':
+          policyDescription: 'Allows access to things with shadows'
+          operations:
+            - 'aws.greengrass#ListNamedShadowsForThing'
+          resources:
+            - MyThingName
+      aws.greengrass.ipc.pubsub:
+        'shadow:pubsub:1':
+          policyDescription: 'Allows access to shadow pubsub topics'
+          operations:
+            - 'aws.greengrass#SubscribeToTopic'
+          resources:
+            - $aws/things/MyThingName/shadow/get/accepted
+            - $aws/things/MyThingName/shadow/name/myNamedShadow/get/accepted
+Manifests:
+  - Platform:
+      os: linux
+    Artifacts:
+      - URI: s3://S3_BUCKET_NAME/artifacts/shadow/0.3.1/files.zip
+        Unarchive: ZIP
+    Lifecycle:
+      install:
+        Script: |
+          sudo apt update && \
+          sudo apt install -y python3 python3-pip python3-venv && \
+          python3 -m venv venv && \
+          . venv/bin/activate && \
+          python3 -m pip install awsiotsdk
+      run: |
+        . venv/bin/activate
+        python3 -u {artifacts:decompressedPath}/files/shadow.py "{configuration:/Message}"
+  - Platform:
+      os: windows
+    Artifacts:
+      - URI: s3://S3_BUCKET_NAME/artifacts/shadow/0.3.1/files.zip
+        Unarchive: ZIP
+    Lifecycle:
+      run: |
+        python3 -u {artifacts:decompressedPath}/files/shadow.py "{configuration:/Message}"

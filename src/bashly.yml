@@ -1,0 +1,225 @@
+name: gg
+help: Yet another set of Greengrass development commands – but one that feels just right.
+version: 1.0.0
+
+dependencies:
+  aws: See https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html for setup instructions.
+  yq: See https://mikefarah.gitbook.io/yq#install for setup instructions.
+
+environment_variables:
+- name: message_level
+  help: Set the command message level
+  allowed: [DEBUG, INFO, WARN, ERROR]
+  default: INFO
+
+variables:
+- name: command_name
+  value: gg
+
+- name: config_file
+  value: config.yaml
+
+- name: artifacts_dir_path
+  value: component/artifacts
+
+- name: recipes_dir_path
+  value: component/recipes
+
+- name: src_dir_path
+  value: component/src
+
+- name: deployment_dir_path
+  value: deployment
+
+- name: deployment_yaml_path
+  value: deployment/deployment.yaml
+
+- name: recipe_yaml_path
+  value: component/recipe.yaml
+
+- name: template_dir_path
+  value: templates
+
+- name: default_template
+  value: python/hello-world
+
+commands:
+- name: template
+  help: List project templates
+
+- name: component
+  help: Manage components
+
+  commands:
+  - name: init
+    help: Initialize a new component
+
+    args:
+    - name: component_name
+      help: Component name
+      required: true
+
+    flags:
+    - long: --template
+      short: -t
+      arg: component_template
+      help: See $command_name template for options.
+      default: python/hello-world
+
+  - name: build
+    help: Build the component and prepare its artifacts
+    filters:
+    - is_project_root
+
+    args:
+    - name: component_version
+      help: Component version
+      required: true
+      validate: semantic_version
+
+  - name: push
+    help: Upload the component artifacts to S3
+    filters:
+    - is_project_root
+
+    args:
+    - name: component_version
+      help: Component version
+      required: true
+      validate: semantic_version
+
+  - name: create
+    help: Register the component in AWS
+    filters:
+    - is_project_root
+    
+    args:
+    - name: component_version
+      help: Component version
+      required: true
+      validate: semantic_version
+  - name: pipeline
+    help: Automate build, push, and create in one command
+    filters:
+    - is_project_root
+    args:
+    - name: component_version
+      help: Component version
+      required: true
+
+  - name: versions
+    help: Display available component versions
+    filters:
+    - is_project_root
+
+    commands:
+    - name: public
+      help: Show public component versions
+      args:
+      - name: component_name
+        help: Public component name (aws.greengrass. prefix can be omitted)
+        required: true
+
+    - name: custom
+      help: Show custom component versions
+      args:
+      - name: component_name
+        help: Custom component name
+        required: true
+
+- name: remote-deployment
+  help: Manage remote deployments
+
+  commands:
+  - name: init
+    help: Initialize a new remote deployment
+    filters:
+    - is_project_root
+    args:
+    - name: target_name
+      help: The name of the Thing or ThingGroup to deploy to
+      required: true
+    flags:
+    - long: --template
+      short: -t
+      arg: deployment_template
+      help: See $command_name template for options.
+      default: python/hello-world
+
+  - name: pull
+    help: Fetch the latest remote deployment configuration
+    filters:
+    - is_project_root
+    args:
+    - name: target_name
+      help: The name of the Thing or ThingGroup to deploy to
+      required: true 
+
+  - name: deploy
+    help: Deploy components to the specified remote target
+    filters:
+    - is_project_root
+    - deployment_yaml_exists
+    args:
+    - name: component_version
+      help: The component version to deploy, updating the deployment.yaml.
+      required: true
+      validate: semantic_version
+    flags:
+    - long: --wait
+      short: -w
+      help: Wait for the deployment to finish before exiting.
+
+  - name: status
+    help: Check the status of a remote deployment by ID
+    args:
+    - name: deployment_id
+      help: The name of the deployment
+      required: true
+
+  - name: view
+    help: View details of the latest remote deployment
+    filters:
+    - is_project_root
+    args:
+    - name: target_name
+      help: The name of the Thing or ThingGroup to view
+      required: true
+  
+  - name: targets
+    help: List deployment targets (the targets must have at least one deployment)
+
+- name: local-deployment
+  help: Manage local deployments
+  dependencies:
+    /greengrass/v2/bin/greengrass-cli: See https://docs.aws.amazon.com/greengrass/v2/developerguide/install-gg-cli.html for installation and setup instructions.
+
+  commands:
+  - name: deploy
+    help: Deploy the component locally
+    filters:
+    - is_project_root
+    args:
+    - name: component_version
+      help: The component version to deploy
+      required: true
+      validate: semantic_version
+  
+  - name: remove
+    help: Remove the component locally
+    filters:
+    - is_project_root
+    args:
+    - name: component_name
+      help: Component name to remove
+      required: true
+
+  - name: status
+    help: Retrieve the local deployment status
+    args:
+    - name: deployment_id
+      help: The name of the deployment
+      required: true
+
+
+  

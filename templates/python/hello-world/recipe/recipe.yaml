@@ -1,0 +1,25 @@
+RecipeFormatVersion: '2020-01-25'
+ComponentName: COMPONENT_NAME
+ComponentVersion: '0.0.0'
+ComponentDescription: COMPONENT_NAME is a python project that says hello world.
+ComponentPublisher: AUTHOR_NAME
+ComponentConfiguration:
+  DefaultConfiguration:
+    Message: hello-world
+Manifests:
+  - Platform:
+      os: linux
+    Artifacts:
+      - URI: s3://S3_BUCKET_NAME/artifacts/hello-world/0.0.0/files.zip
+        Unarchive: ZIP
+    Lifecycle:
+      run: |
+        python3 -u {artifacts:decompressedPath}/files/hello-world.py "{configuration:/Message}"
+  - Platform:
+      os: windows
+    Artifacts:
+      - URI: s3://S3_BUCKET_NAME/artifacts/hello-world/0.0.0/files.zip
+        Unarchive: ZIP
+    Lifecycle:
+      run: |
+        python3 -u {artifacts:decompressedPath}/files/hello-world.py "{configuration:/Message}"
