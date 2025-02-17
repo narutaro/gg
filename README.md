@@ -4,7 +4,9 @@
 
 # Yet another Bash-based Greengrass development toolkit.
 
-`gg` is a lightweight Bash alternative to Python-based [Greengrass Development Kit](https://github.com/aws-greengrass/aws-greengrass-gdk-cli).
+# What is `gg`?
+
+`gg` is a lightweight Bash-based wrapper around [AWS CLI](https://aws.amazon.com/cli/?nc1=h_ls) and  [Greengrass CLI](https://docs.aws.amazon.com/greengrass/v2/developerguide/gg-cli-reference.html). It provides a simple alternative to the Python-based [Greengrass Development Kit (GDK)](https://github.com/aws-greengrass/aws-greengrass-gdk-cli), streamlining AWS IoT Greengrass component development and deployment workflows.
 
 ![video](static/1000x600.gif)
 
