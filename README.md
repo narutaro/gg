@@ -13,11 +13,11 @@
 # Why `gg`?
 
 - Simplifies component management and deployment.
-- No virtualenvs, no pip – just Bash.
 - Automatically customizes configurations from project templates – little to no manual editing.
 - YAML-first approach for both input and output – keeping configurations clean and readable.
 - Built with [Bashly](https://bashly.dannyb.co/) - intuitive CLI structure.
 - Tab-completion support for faster command execution.
+- Provides various [templates](templates/) to quickly bootstrap your project.
 
 # Dependencies
 
