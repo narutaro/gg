@@ -24,6 +24,7 @@
 * [bash](https://www.gnu.org/software/bash/) version 4 or higher
 * [awscli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) with [required IAM policy](#iam-policy-example)
 * [yq](https://mikefarah.gitbook.io/yq#install)
+* [greengrass-cli](https://docs.aws.amazon.com/greengrass/v2/developerguide/install-gg-cli.html) (required only for local-deploy command)
 
 # Installation
 
