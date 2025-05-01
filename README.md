@@ -212,7 +212,7 @@ The `deployment/deployment.yaml` file is created, and you can now edit the file(
 Let's deploy the component. 
 
 ```
-gg remote-deployment deploy -w
+gg remote-deployment deploy <COMPONENT_VERSION> -w
 ```
 
 The `-w` option allows you to poll the status after initiating the deployment and display the deployment results. The deployment is complete when `deploymentStatus: COMPLETED` is displayed. Check the status on the core node to verify.
