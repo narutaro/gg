@@ -54,8 +54,9 @@ if ! describe_result=$("${cmd2[@]}" 2>&1); then
   exit 1
 fi
 
-describe_output=$(echo "$describe_result" | yq)
-echo "$describe_output"
+#describe_output=$(echo "$describe_result" | yq)
+describe_output=$(echo "$describe_result")
+echo "$describe_output" | yq
 echo ""
 
 log INFO "$COMPONENT_NAME - $COMPONENT_VERSION created successfully"
