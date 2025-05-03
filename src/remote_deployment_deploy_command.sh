@@ -47,7 +47,7 @@ log DEBUG "Executing - ${cmd2[*]}"
 if [ -n "$WAIT_FLAG" ] && [ "$WAIT_FLAG" -eq 1 ]; then
   log INFO "Polling deployment status for DeploymentId - $DEPLOYMENT_ID"
   POLL_INTERVAL=5
-  MAX_RETRIES=12
+  MAX_RETRIES=24
   retries=0
   
   while true; do
