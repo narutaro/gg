@@ -24,7 +24,10 @@ yq -i ".Manifests[].Artifacts[].URI = \"$S3_URI\"" $recipe_yaml_path
 # Place the artifacts
 mkdir -p $artifacts_dir_path/$COMPONENT_NAME/$COMPONENT_VERSION
 cp $src_dir_path/*.* $artifacts_dir_path/$COMPONENT_NAME/$COMPONENT_VERSION
+
+mkdir -p $recipes_dir_path
 cp $recipe_yaml_path $recipes_dir_path/recipe-$COMPONENT_VERSION.yaml
+
 cd $artifacts_dir_path/$COMPONENT_NAME/$COMPONENT_VERSION && zip -rq files.zip * && cd - > /dev/null 
 
 log INFO "$COMPONENT_NAME - $COMPONENT_VERSION built"
