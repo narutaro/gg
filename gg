@@ -1103,10 +1103,14 @@ gg_component_build_command() {
   # Place the artifacts
   mkdir -p $artifacts_dir_path/$COMPONENT_NAME/$COMPONENT_VERSION
   cp $src_dir_path/*.* $artifacts_dir_path/$COMPONENT_NAME/$COMPONENT_VERSION
+
+  mkdir -p $recipes_dir_path
   cp $recipe_yaml_path $recipes_dir_path/recipe-$COMPONENT_VERSION.yaml
+
   cd $artifacts_dir_path/$COMPONENT_NAME/$COMPONENT_VERSION && zip -rq files.zip * && cd - > /dev/null
 
   log INFO "$COMPONENT_NAME - $COMPONENT_VERSION built"
+
 }
 
 # :command.function
@@ -1122,6 +1126,12 @@ gg_component_push_command() {
 
   COMPONENT_S3_BUCKET=$(yq ".s3BucketName" $config_file)
 
+  local_file="$artifacts_dir_path/$COMPONENT_NAME/$COMPONENT_VERSION/files.zip"
+  if [ ! -f "$local_file" ]; then
+    log ERROR "Local file not found: $local_file"
+    exit 1
+  fi
+
   cmd=(
     aws s3 cp
     $artifacts_dir_path/$COMPONENT_NAME/$COMPONENT_VERSION/files.zip
@@ -1130,9 +1140,14 @@ gg_component_push_command() {
 
   # Execute command
   log DEBUG "Executing - ${cmd[*]}"
-  ${cmd[@]} > /dev/null 2>&1
+  #${cmd[@]} > /dev/null 2>&1
+  if ${cmd[@]}; then
+    log INFO "$COMPONENT_NAME - $COMPONENT_VERSION pushed successfully"
+  else
+    log ERROR "Failed to push $COMPONENT_NAME - $COMPONENT_VERSION to S3"
+    exit 1
+  fi
 
-  log INFO "$COMPONENT_NAME - $COMPONENT_VERSION pushed"
 }
 
 # :command.function
