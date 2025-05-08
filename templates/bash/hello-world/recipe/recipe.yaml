@@ -10,7 +10,7 @@ Manifests:
   - Platform:
       os: linux
     Artifacts:
-      - URI: s3://S3_BUCKET_NAME/artifacts/hello-world/0.0.0/files.zip
+      - URI: s3://S3_BUCKET_NAME/artifacts/COMPONENT_NAME/0.0.0/files.zip
         Unarchive: ZIP
     Lifecycle:
       run: |
@@ -18,7 +18,7 @@ Manifests:
   - Platform:
       os: windows
     Artifacts:
-      - URI: s3://S3_BUCKET_NAME/artifacts/hello-world/0.0.0/files.zip
+      - URI: s3://S3_BUCKET_NAME/artifacts/COMPONENT_NAME/0.0.0/files.zip
         Unarchive: ZIP
     Lifecycle:
       run: |

@@ -2,7 +2,7 @@
 # https://docs.aws.amazon.com/greengrass/v2/developerguide/component-recipe-reference.html
 RecipeFormatVersion: '2020-01-25'
 ComponentName: COMPONENT_NAME
-ComponentVersion: '0.0.2'
+ComponentVersion: '0.0.0'
 ComponentDescription: COMPONENT_NAME is a python project that subscribe with IPC/MQTT.
 ComponentPublisher: AUTHOR_NAME
 ComponentConfiguration:
@@ -31,12 +31,12 @@ Manifests:
         . venv/bin/activate
         python3 -u {artifacts:decompressedPath}/files/mqtt-sub.py
     Artifacts:
-      - URI: s3://S3_BUCKET_NAME/artifacts/mqtt-sub/0.0.2/files.zip
+      - URI: s3://S3_BUCKET_NAME/artifacts/COMPONENT_NAME/0.0.0/files.zip
         Unarchive: ZIP
   - Platform:
       os: windows
     Artifacts:
-      - URI: s3://S3_BUCKET_NAME/artifacts/mqtt-sub/0.0.2/files.zip
+      - URI: s3://S3_BUCKET_NAME/artifacts/COMPONENT_NAME/0.0.0/files.zip
         Unarchive: ZIP
     Lifecycle:
       run: |

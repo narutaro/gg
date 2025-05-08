@@ -36,7 +36,7 @@ Manifests:
   - Platform:
       os: linux
     Artifacts:
-      - URI: s3://S3_BUCKET_NAME/artifacts/shadow/0.3.1/files.zip
+      - URI: s3://S3_BUCKET_NAME/artifacts/COMPONENT_NAME/0.3.1/files.zip
         Unarchive: ZIP
     Lifecycle:
       install:
@@ -52,7 +52,7 @@ Manifests:
   - Platform:
       os: windows
     Artifacts:
-      - URI: s3://S3_BUCKET_NAME/artifacts/shadow/0.3.1/files.zip
+      - URI: s3://S3_BUCKET_NAME/artifacts/COMPONENT_NAME/0.3.1/files.zip
         Unarchive: ZIP
     Lifecycle:
       run: |

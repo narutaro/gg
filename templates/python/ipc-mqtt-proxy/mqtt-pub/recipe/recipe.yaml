@@ -31,12 +31,12 @@ Manifests:
         echo "@Message: {configuration:/Message}"
         python3 -u {artifacts:decompressedPath}/files/mqtt-pub.py "{configuration:/MQTTMessage}"
     Artifacts:
-      - URI: s3://S3_BUCKET_NAME/artifacts/mqtt-pub/0.2.6/files.zip
+      - URI: s3://S3_BUCKET_NAME/artifacts/COMPONENT_NAME/0.2.6/files.zip
         Unarchive: ZIP
   - Platform:
       os: windows
     Artifacts:
-      - URI: s3://S3_BUCKET_NAME/artifacts/mqtt-pub/0.2.6/files.zip
+      - URI: s3://S3_BUCKET_NAME/artifacts/COMPONENT_NAME/0.2.6/files.zip
         Unarchive: ZIP
     Lifecycle:
       run: |
